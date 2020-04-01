@@ -1,0 +1,128 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "fullname": "murugesan subbiah",
+      "username": "murugesh",
+      "password": "123456",
+      "email": "murugesan.subbiah@hcl.com",
+      "address": "Wed Sep 20 2019 17:22:41 GMT+0700"
+    },
+    {
+      "fullname": "Ram Prased",
+      "username": "ram",
+      "password": "123456",
+      "email": "ramprased@gmail.com",
+      "address": "33 ram house address",
+      "id": 2
+    },
+    {
+      "fullname": "mseddsf",
+      "username": "mmmmsss",
+      "password": "123456",
+      "email": "msdere@gmail.com",
+      "address": "sdfsdfk sfdlsdf sldfjsd sdlfsd sflsdfsdfds",
+      "id": 3
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Men's Tech Shell Full-zip",
+      "price": 50.2,
+      "image": "men-outwear1.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Anvil L/S Crew Neck - Grey",
+      "price": 22.15,
+      "image": "men-outwear2.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Green Flex Fleece Zip Hoodie",
+      "price": 45.65,
+      "image": "men-outwear3.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Ladies Modern Stretch Full Zip",
+      "price": "41.60",
+      "image": "lad-outwear1.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Ladies Colorblock Wind Jacket",
+      "price": "45.90",
+      "image": "lad-outwear2.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Ladies Voyage Fleece Jacket",
+      "price": "48.00",
+      "image": "lad-outwear3.jpg"
+    },
+    {
+      "id": 7,
+      "name": "YouTube Organic Cotton T-Shirt - Grey",
+      "price": "14.20",
+      "image": "men-tshirts1.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Inbox - Subtle Actions T-Shirt",
+      "price": "17.05",
+      "image": "men-tshirts2.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Adult Android Superhero T-Shirt",
+      "price": "45.65",
+      "image": "men-tshirts3.jpg"
+    },
+    {
+      "id": 10,
+      "name": "Ladies Chrome T-Shirt",
+      "price": "50.20",
+      "image": "lad-tshirts1.jpg"
+    },
+    {
+      "id": 11,
+      "name": "Ladies Google New York T-Shirt",
+      "price": "22.15",
+      "image": "lad-tshirts2.jpg"
+    },
+    {
+      "id": 12,
+      "name": "Ladies Gmail T-Shirt",
+      "price": "45.65",
+      "image": "lad-tshirts3.jpg"
+    }
+  ],
+  "productslist": [
+    {
+      "id": 1,
+      "productId": 10001,
+      "userId": 1000001,
+      "quantity": 200001
+    },
+    {
+      "petId": 3,
+      "userId": 1,
+      "quantity": 1,
+      "id": 2
+    },
+    {
+      "petId": 3,
+      "userId": 1,
+      "quantity": 3,
+      "id": 3
+    },
+    {
+      "petId": 3,
+      "userId": 1,
+      "quantity": 1,
+      "id": 4
+    }
+  ]
+}
