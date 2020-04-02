@@ -1,0 +1,54 @@
+/* @import url(https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css); */
+.my-form
+{
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.my-form .row
+{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.card-header{
+    background-color: #af3a86;
+    color:white;
+}
+h1{
+    color:black;
+}
+.display-4{
+    font-size: 1.5rem;
+}
+.text-white{
+    color:black !important;
+}
+.col-md-3{
+    padding-left:0px;
+}
+label{
+    margin-bottom: 0px;
+    font-size: 12px;
+    font-weight: bold;
+}
+.box{
+    margin:5px;
+}
+.card-footer{
+    background-color: white;
+    border-top:none;
+    text-align: center;
+}
+.img-crs{
+    cursor: pointer;
+}
+.img-01{
+    height:20%;
+    text-align: center;
+}
+
+
+
+
+

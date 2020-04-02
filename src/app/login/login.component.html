@@ -1,0 +1,66 @@
+<main class="my-form">
+    <div class="cotainer">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                    <div class="card">
+                        <div class="card-header">Login</div>
+                        <div *ngIf="errMsg!=''" class="error">{{errMsg}}</div>
+                        <div class="card-body">
+                            <form name="my-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
+                                <div class="form-group row">
+                                    <label for="full_name" class="col-md-4 col-form-label text-md-right">Username</label>
+                                    <div class="col-md-6">
+                                        <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && username.errors }">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="email_address" class="col-md-4 col-form-label text-md-right">Password</label>
+                                    <div class="col-md-6">
+                                        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && password.errors}">
+                                    </div>
+                                </div>
+                                     <div class="col-md-6 offset-md-4">
+                                        <button type="submit" class="btn btn-primary">
+                                        Login
+                                        </button>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!--
+<section id="cover" class="min-vh-100">
+    <div id="cover-caption">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-4 col-lg-6 col-md-8 col-sm-10 mx-auto form p-4">
+                    <div *ngIf="displayerror" class="error">Your username & password Incorrect</div>
+                    <div class="px-2">
+                        <form  [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="justify-content-center">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Username</label>
+                                    <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && username.errors }">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Password</label>
+                                    <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && password.errors}">
+                            </div>
+                            <div class="form-group text-center">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-sm btn-primary m-r-5">Login</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+-->
+
