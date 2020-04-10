@@ -39,10 +39,11 @@ label{
     border-top:none;
     text-align: center;
 }
-.img-crs{
+.crs{
     cursor: pointer;
 }
-.img-01{
+
+/* .img-01{
     height:20%;
     text-align: center;
-}
+} */

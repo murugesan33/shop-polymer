@@ -1,59 +1,83 @@
+<div class="d-flex justify-content-center py-3">
+    <div class="col-md-7">
+        <div class="card border border-dark">
+            <div class="card-header">Register</div>
+            <div class="card-body">
+                <form name="my-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group row">
+                        <label for="full_name" class="col-md-4 text-md-right">Full Name</label>
+                        <div class="col-md-6">
+                            <input type="text" id="full_name" class="form-control ui-inputtext"
+                                formControlName="fullname">
+                            <small *ngIf="fullname.invalid && (fullname.dirty || fullname.touched) && fullname.errors "
+                                class="text-danger">
+                                Name is required!.
+                            </small>
+                        </div>
+                    </div>
 
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header">Register</div>
-                        <div class="card-body">
-                            <form name="my-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
-                                <div class="form-group row">
-                                    <label for="full_name" class="col-md-4 col-form-label text-md-right">Full Name</label>
-                                    <div class="col-md-6">
-                                        <input type="text" id="full_name" class="form-control" formControlName="fullname" [ngClass] ="{'is-invalid':submitted && fullname.errors}">
-                                    </div>
-                                </div>
+                    <div class="form-group row">
+                        <label for="email_address" class="col-md-4 text-md-right">E-Mail</label>
+                        <div class="col-md-6">
+                            <input type="text" id="email_address" class="form-control ui-inputtext"
+                                formControlName="email">
+                            <small *ngIf="email.invalid && (email.dirty || email.touched) && email.errors?.required"
+                                class="text-danger">
+                                Email is required.
+                            </small>
+                            <small *ngIf="email.errors?.email" class="text-danger">
+                                Enter a valid email address.
+                            </small>
+                        </div>
+                    </div>
 
-                                <div class="form-group row">
-                                    <label for="email_address" class="col-md-4 col-form-label text-md-right">E-Mail</label>
-                                    <div class="col-md-6">
-                                        <input type="text" id="email_address" class="form-control" formControlName="email" [ngClass] ="{'is-invalid':submitted && email.errors}">
-                                        <!-- <small *ngIf="is-invalid && email.errors?.required" class="error">Email is required</small> -->
-                                        <!-- <small *ngIf="email.errors?.pattern" class="error">Email must be a valid email address</small> -->
-                                    </div>
-                                    
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="user_name" class="col-md-4 col-form-label text-md-right">User Name</label>
-                                    <div class="col-md-6">
-                                        <input type="text" id="user_name" class="form-control" formControlName="username" [ngClass]="{'is-invalid':submitted && username.errors}">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-                                    <div class="col-md-6">
-                                        <input type="password" id="password" class="form-control" formControlName="pwd" [ngClass]="{'is-invalid':submitted && pwd.errors}">
-                                    </div>
-                                </div>
-                                <!--<div class="form-group row">
+                    <div class="form-group row">
+                        <label for="user_name" class="col-md-4 text-md-right">User Name</label>
+                        <div class="col-md-6">
+                            <input type="text" id="user_name" class="form-control ui-inputtext"
+                                formControlName="username">
+                            <small *ngIf="username.invalid && (username.dirty || username.touched) && username.errors"
+                                class="text-danger">
+                                userName is required!.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="password" class="col-md-4 text-md-right">Password</label>
+                        <div class="col-md-6">
+                            <input type="password" id="password" class="form-control ui-inputtext"
+                                formControlName="pwd">
+                            <small *ngIf="pwd.invalid && (pwd.dirty || pwd.touched) && pwd.errors " class="text-danger">
+                                Password is required!.
+                            </small>
+                        </div>
+                    </div>
+                    <!--<div class="form-group row">
                                     <label for="confirm_password" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
                                     <div class="col-md-6">
                                         <input type="text" id="confirm_password" class="form-control" formControlName="confPwd" [ngClass]="{'is-invalid' :submitted && confPwd.errors}">
                                     </div>
                                 </div>-->
-                                <div class="form-group row">
-                                    <label for="present_address" class="col-md-4 col-form-label text-md-right">Address</label>
-                                    <div class="col-md-6">
-                                        <textarea id="present_address" class="form-control" formControlName="address" [ngClass]="{'is-invalid':submitted && address.errors}"></textarea>
-                                    </div>
-                                </div>
-                                    <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">
-                                        Register
-                                        </button>
-                                    </div>
-                            </form>
+                    <div class="form-group row">
+                        <label for="present_address" class="col-md-4 text-md-right">Address</label>
+                        <div class="col-md-6">
+                            <textarea id="present_address" class="form-control ui-inputtext"
+                                formControlName="address"></textarea>
+                            <small *ngIf="address.invalid && (address.dirty || address.touched) && address.errors "
+                                class="text-danger">
+                                Address is required!.
+                            </small>
                         </div>
                     </div>
+                    <div class="col-md-6 offset-md-4">
+                        <button type="submit" class="btn btn-primary">
+                            Register
+                        </button>
+                    </div>
+                </form>
             </div>
+
         </div>
-   
+    </div>
+
+</div>

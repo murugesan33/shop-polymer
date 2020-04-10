@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {ProductsService} from '../products.service';
-import {Router} from '@angular/router';
+import { ProductsService } from '../products.service';
+import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -11,73 +11,72 @@ import { FormControl } from '@angular/forms';
 export class CheckoutComponent implements OnInit {
   public arrObjectItem = [];
   public arrItem = [];
-  total=0;
-  quantity=1;
-  // quantityformcontrol:FormControl;
-  constructor(private api:ProductsService, private router: Router) { 
-    if(!this.api.log.value){
+  public arrSesItem = [];
+  public arrBehItem = [];
+  total = 0;
+  itemQnty = 1;
+
+  constructor(private api: ProductsService, private router: Router) {
+    if (!this.api.log.value) {
       this.api.err.next("Please Login!");
       this.router.navigate(['login']);
-     }else{
+    } else {
       this.api.err.next("");
-      this.arrItem =((this.api.productItem.value.length > 0) ? this.api.productItem.value : JSON.parse(sessionStorage.getItem('products')));
-     }
-     this.total = this.api.totalItems.value;
+    }
   }
 
   ngOnInit() {
-      this.getCheckOutList();
-      // this.quantityformcontrol=new FormControl();
-  }
-
-  getCheckOutList(){
-    if(this.arrItem!=null){
-      this.api.getProductsDetails().subscribe(data=>{
-         for(let item of data){
-              for(let it of this.arrItem){
-                if(it.id == item.id){
-                  item['quantity'] = it.Quantity;
-                  console.log(item.price);
-                  this.total = this.total + item.price;
-                  this.arrObjectItem.push(item)
-                }
-              }
-          }
-      })
-    }
-  }
-
-  deleteProduct(id){
-    let filteredItems  = this.arrItem.filter((item) => item.id != id );
-    sessionStorage.setItem('products',JSON.stringify(filteredItems));
-    sessionStorage.setItem('item',JSON.stringify(filteredItems.length));
-    this.api.productItem.next(filteredItems);
-    this.api.item.next(filteredItems.length);
-    this.arrItem = filteredItems;
-    this.arrObjectItem = [];
     this.getCheckOutList();
   }
 
-  checkOutData(){
+  getCheckOutList() {
+    if (sessionStorage.length > 0) {
+      this.arrSesItem = JSON.parse(sessionStorage.getItem('products'));
+    }
+    this.api.productItem.subscribe((data) => {
+      this.arrBehItem = data;
+    });
+    this.arrItem = [...this.arrSesItem, ...this.arrBehItem]
+    for (let i = 0; i < this.arrItem.length; i++) {
+      this.total = Number((this.total + this.arrItem[i]['subtotal']).toFixed(2));
+      this.arrObjectItem.push(this.arrItem[i]);
+    }
+    sessionStorage.setItem('products', JSON.stringify(this.arrObjectItem));
+    sessionStorage.setItem('item', JSON.stringify(this.arrObjectItem.length));
+    this.api.productItem.next(this.arrObjectItem);
+    this.api.item.next(this.arrObjectItem.length);
+  }
+
+  deleteProduct(id) {
+    this.total = 0;
+    let filteredItems = this.arrItem.filter((item) => item.id != id);
+    sessionStorage.setItem('products', JSON.stringify(filteredItems));
+    sessionStorage.setItem('item', JSON.stringify(filteredItems.length));
+    this.api.productItem.next(filteredItems);
+    this.api.item.next(filteredItems.length);
+    this.arrItem = filteredItems;
+    this.arrObjectItem = filteredItems;
+    for (let i = 0; i < filteredItems.length; i++) {
+      this.total = Number((this.total + filteredItems[i]['subtotal']).toFixed(2));
+    }
+  }
+
+  checkOutData() {
     let status = false;
     const userId = (this.api.uId.value) ? this.api.uId.value : localStorage.getItem('userId');
-    //console.log(this.arrItem);
-  //  console.log(this.arrObjectItem);
-
-   
-  for(let item of this.arrItem){
-       let arrItem = {
-         petId:item.id,
-         userId:userId,
-         quantity:item.Quantity
-       }
+    for (let item of this.arrItem) {
+      let arrItem = {
+        petId: item.id,
+        userId: userId,
+        quantity: parseInt(item.qnty)
+      }
       this.api.setUserProductsLists(arrItem).subscribe(data => {
-          status = true;
+        status = true;
       });
     }
-    setTimeout((status)=> {
+    setTimeout((status) => {
       this.arrObjectItem = [];
-      this.arrItem =[];
+      this.arrItem = [];
       sessionStorage.clear();
       this.api.productItem.next([]);
       this.api.item.next(0);
@@ -85,10 +84,24 @@ export class CheckoutComponent implements OnInit {
     }, 5000);
   }
 
+  getQnty(e, pId) {
+    this.total = 0;
+    for (let i = 0; i < this.arrItem.length; i++) {
+      if (this.arrItem[i]['id'] === pId) {
+        this.arrItem[i]['qnty'] = e;
+        this.arrItem[i]['subtotal'] = Number((this.arrItem[i]['price'] * e).toFixed(2));
+      }
+      this.total = Number((this.total + this.arrItem[i]['subtotal']).toFixed(2));
+    }
+    setTimeout(() => {
+      sessionStorage.setItem('products', JSON.stringify(this.arrItem));
+      sessionStorage.setItem('item', JSON.stringify(this.arrItem));
+      this.api.productItem.next(this.arrItem);
+      this.api.item.next(this.arrItem.length);
+      this.arrItem = this.arrItem;
+      this.arrObjectItem = this.arrItem;
+    }, 5000);
+  }
 
-  totalCount(el, obj){
-    let count = el.target.value;
-    let itemVl = obj.price;
-    this.total = count * itemVl;
-  } 
+
 }

@@ -27,7 +27,7 @@ export class ProductsService {
 
   public item = new BehaviorSubject<number>(0);
 
-  public productItem = new BehaviorSubject<checkOut[]>([]);
+  public productItem = new BehaviorSubject<any>([]);
 
   public totalItems = new BehaviorSubject<number>(0);
 
@@ -42,12 +42,13 @@ export class ProductsService {
       return this.http.post(localUrl+'/posts',arr,httpOptions);
   }
 
-  getProductsDetails(){
+  getProducts(){
     return this.http.get<menWear[]>(localUrl+'/products');
   }
   setUserProductsLists(arr){
     return this.http.post(localUrl+'/productslist', arr, httpOptions);
   }
+
 }
 
 
@@ -56,6 +57,8 @@ export interface menWear {
   name: string;
   price: number;
   image:string;
+  description:string;
+  features:string;
 }
 
 export interface UserDeatils {
@@ -71,3 +74,4 @@ export interface checkOut{
   id:number,
   Quantity:number
 }
+

@@ -16,6 +16,8 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { ProductsComponent } from './products/products.component';
+import { HomeComponent } from './home/home.component';
+import { DetailsComponent } from './details/details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +30,9 @@ import { ProductsComponent } from './products/products.component';
     RegisterComponent,
     LoginComponent,
     CheckoutComponent,
-    ProductsComponent
+    ProductsComponent,
+    HomeComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,

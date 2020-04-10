@@ -1,21 +1,25 @@
 <div class="card-header">{{title}}</div>
-    <div class="card-body">
-        <div class="row">
-            <div class="card col-md-2 box" *ngFor="let item of products" style="height:5%">
-               <div class="img-01">
-                <img  src="../../assets/images/products/{{item.image}}" alt="Card image">
-               </div>
-             
-                <div class="card-body">
-                    <div class="card-text">{{item.name}}</div><br><br>
-                    <div class="card-text">${{item.price}}</div>
-                </div>
-                <div class="card-footer">
-                    <button type="button" (click)="buyProduct(item.id)" class="btn btn-primary">Add to Cart</button>
-                </div>
+<div class="card-body">
+    <div class="row">
+        <div class="card col-md-3 box border border-dark crs" *ngFor="let item of products"
+            [routerLink]="['/details', item.id]">
+            <div class="d-flex justify-content-center">
+                <img class="img-responsive" src="../../assets/images/products/{{item.image}}" alt="Card image">
             </div>
-            <div *ngIf="products.length == 0">
-                No Record Found
-            </div>
+            <small class="pt-3 text-center"><strong>{{item.name}}</strong></small>
+
+            <small class="py-1 text-center">${{item.price}}</small>
+            <!-- <div class="card-body">
+                         <div class="card-text">{{item.name}}</div><br><br>
+                         <div class="card-text">${{item.price}}</div>
+                     </div> -->
+            <!-- <div class="card-footer">
+                         <button type="button" (click)="buyProduct(item.id)" class="btn btn-primary">Add to Cart</button>
+                     </div> -->
         </div>
-   </div> 
+
+        <div *ngIf="products.length == 0">
+            No Record Found
+        </div>
+    </div>
+</div>

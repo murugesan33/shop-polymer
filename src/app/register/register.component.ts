@@ -11,16 +11,15 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-  submitted = false;
- // spresp: any;
-  fullname = new FormControl('', Validators.required);
+  fullname = new FormControl('', [Validators.required]);
   email = new FormControl('', [
     Validators.required,
-    Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")
+    // Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")
+    Validators.email
   ]);
   username = new FormControl('', Validators.required);
   pwd = new FormControl('', Validators.required);
- // private confPwd = new FormControl('', Validators.required);
+  // private confPwd = new FormControl('', Validators.required);
   address = new FormControl('', Validators.required);
   constructor(private formBuilder: FormBuilder, private api: ProductsService, private router: Router) { }
 
@@ -30,33 +29,32 @@ export class RegisterComponent implements OnInit {
       email: this.email,
       username: this.username,
       pwd: this.pwd,
-     // confPwd: this.confPwd,
+      // confPwd: this.confPwd,
       address: this.address
     });
   }
 
   onSubmit() {
-   // console.log(this.registerForm.invalid);
-    this.submitted = true;
-    if (this.registerForm.invalid)
-      return;
- 
-    const registerPOST = <UserDeatils> {
-      fullname: this.fullname.value,
-      username: this.username.value,
-      password: this.pwd.value,
-      email: this.email.value,
-      address: this.address.value,
-    }
-   // console.log(registerPOST);
-    this.api
-      .setUserDetails(registerPOST)
-      .subscribe(resp => {
-       // return this.spresp.push(resp);
-       //console.log(resp);
-       this.router.navigate(['menswear']);
+    if (this.registerForm.invalid) {
+      console.log(this.registerForm.invalid);
+      Object.keys(this.registerForm.controls).forEach(key => {
+        this.registerForm.controls[key].markAsDirty();
       });
-    // this.router.navigate(['feature']);
+      console.log(this.registerForm);
+    } else {
+      const registerPOST = <UserDeatils>{
+        fullname: this.fullname.value,
+        username: this.username.value,
+        password: this.pwd.value,
+        email: this.email.value,
+        address: this.address.value,
+      }
+      this.api
+        .setUserDetails(registerPOST)
+        .subscribe(resp => {
+          this.router.navigate(['menswear']);
+        });
+    }
   }
 
 }

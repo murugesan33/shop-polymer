@@ -15,9 +15,9 @@ export class LadiesshirtsComponent implements OnInit {
 
   ngOnInit() {
     this.api
-    .getProductsDetails()
+    .getProducts()
     .subscribe(data => {
-      let arr = [1,2,3];
+      let arr = [10,11,12];
       for(let item of data){
         if(arr.indexOf(item.id) != -1){
           this.Products.push(item);

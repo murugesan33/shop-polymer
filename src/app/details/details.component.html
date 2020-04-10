@@ -1,0 +1,56 @@
+<div class="col-md-12 py-3">
+    <div class="card border border-dark" *ngIf="products.length > 0">
+        <div class="card-header">Product Details</div>
+        <div class="card-body">
+            <div class="row">
+               <div class="col-md-7 px-3">
+                    <img class="img-responsive" src="./../assets/images/big/{{products[0]?.image}}" alt="My image"/>
+               </div> 
+               <div class="col-md-5">
+                   <div class="form-group">
+                    <small class="pt-3 text-center"><strong>{{products[0]?.name}}</strong></small>
+                   </div>
+                   <div class="form-group">
+                    <small class="pt-3 text-center">${{products[0]?.price}}</small>
+                   </div>
+                   <div class="form-group">
+                    <label for="sel1">Size:</label>
+                    <select class="form-control" id="sel1" (change)="getSize($event.target.value);">
+                      <option>XS</option>
+                      <option>S</option>
+                      <option selected>M</option>
+                      <option>L</option>
+                      <option>XL</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="sel1">Quantity:</label>
+                    <select class="form-control" id="sel1" (change)="getQnty($event.target.value);">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                    </select>
+                  </div>
+                   <div class="form-row">
+                     <label>
+                         <strong>Description</strong>
+                     </label>
+                   </div>
+                   <div class="form-group">
+                    <p>{{products[0]?.description}}</p>
+                   </div>
+                   <div class="form-group">
+                    <label>Features:</label>
+                   </div>
+                   <div class="form-group">
+                    <ul><li>100% polyester.</li><li>Smooth, technical front with textured mesh back.</li><li>Drawstring bottom for adjustable fit.</li><li>Raglan sleeves.</li><li>Available in forest green with the white Google logo embroidered at left chest.</li></ul>
+                   </div>
+                   <div class="form-group">
+                    <button type="button" class="btn btn-outline-dark" (click)="buyProduct()">ADD TO CART</button>
+                   </div>
+               </div>
+            </div>
+        </div>
+    </div>
+</div>
